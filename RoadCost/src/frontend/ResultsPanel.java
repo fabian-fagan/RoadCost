@@ -1,19 +1,14 @@
 package frontend;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.geom.Line2D;
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 
-public class DisplayComponent extends JComponent {
-	public static final int GRID_SIZE = 50;
+public class ResultsPanel extends JPanel {
 
-	public DisplayComponent() {
-		super();
+	public ResultsPanel() {
+		super(); 
 		setPreferredSize(new Dimension(600, 600));
 
 	}
@@ -35,4 +30,6 @@ public class DisplayComponent extends JComponent {
 		}
 		*/
 	}
+	
+
 }
