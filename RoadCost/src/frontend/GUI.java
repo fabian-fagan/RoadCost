@@ -9,32 +9,33 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import backend.Vehicle;
+
 public class GUI extends JFrame {
 
 	private ResultsPanel resultsPanel;
 	private DataEntryPanel dataPanel;
 
 	public GUI() {	
-		super("Road Cost");	
-		
-		//Create the data entry panel and menu items
+		//Create GUI with inital data entry panel
+		super("Road Cost");		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
-		this.dataPanel = new DataEntryPanel();
-		JButton confirm = new JButton("Confirm");
-		confirm.setPreferredSize(new Dimension(320, 50));
-		this.dataPanel.add(confirm);
-		add(this.dataPanel);
-		createMenu();
+		createDataEntryPanel();
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 
-	private void createMenu() {
+	private void createDataEntryPanel() {
+		this.dataPanel = new DataEntryPanel();
 		JMenuBar menu = new JMenuBar();
 		final JMenuItem reset = new JMenuItem("Reset");
 		JMenuItem quit = new JMenuItem("Quit");
+		JButton confirm = new JButton("Confirm");
+		confirm.setPreferredSize(new Dimension(320, 50));
+		this.dataPanel.add(confirm);
+		add(this.dataPanel);
 		menu.add(reset);
 		menu.add(quit);
 		setJMenuBar(menu);
@@ -49,7 +50,7 @@ public class GUI extends JFrame {
 				confirm.setPreferredSize(new Dimension(320, 50));
 				dataPanel.add(confirm);
 				add(dataPanel);
-				createMenu();
+				createDataEntryPanel();
 				pack();
 				setVisible(true);
 			}
@@ -59,6 +60,25 @@ public class GUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
+			}
+		});
+		
+		confirm.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Save text field responses
+				dataPanel.confirmTextInput();
+				
+				//Construct a vehicle based on responses
+				String type = dataPanel.getVehicleType();
+				int age = dataPanel.getAge();
+				boolean isDiesel = dataPanel.getIsDiesel();
+				int kms = dataPanel.getKmsDriven();
+				int engineSize = dataPanel.getEngineSize();
+				Vehicle vehicle = new Vehicle(type, age, isDiesel, kms, engineSize);
+				
+				//Create results panel based on vehicle
+				resultsPanel = new ResultsPanel(vehicle);
 			}
 		});
 
