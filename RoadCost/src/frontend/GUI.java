@@ -67,18 +67,20 @@ public class GUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Save text field responses
-				dataPanel.confirmTextInput();
+				Boolean validAnswers = dataPanel.confirmInput();
 				
 				//Construct a vehicle based on responses
-				String type = dataPanel.getVehicleType();
-				int age = dataPanel.getAge();
-				boolean isDiesel = dataPanel.getIsDiesel();
-				int kms = dataPanel.getKmsDriven();
-				int engineSize = dataPanel.getEngineSize();
-				Vehicle vehicle = new Vehicle(type, age, isDiesel, kms, engineSize);
-				
-				//Create results panel based on vehicle
-				resultsPanel = new ResultsPanel(vehicle);
+				if (validAnswers) {
+					String type = dataPanel.getVehicleType();
+					int age = dataPanel.getAge();
+					boolean isDiesel = dataPanel.getIsDiesel();
+					int kms = dataPanel.getKmsDriven();
+					int engineSize = dataPanel.getEngineSize();
+					Vehicle vehicle = new Vehicle(type, age, isDiesel, kms, engineSize);
+					
+					//Create results panel based on vehicle
+					resultsPanel = new ResultsPanel(vehicle);
+				}				
 			}
 		});
 

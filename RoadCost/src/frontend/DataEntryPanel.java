@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -17,6 +18,8 @@ public class DataEntryPanel extends JPanel {
 	private JTextField kmTextField;
 	private JTextField sizeTextField;
 	private JTextField ageTextField; 
+	private boolean typeSelected;
+	private boolean dieselSelected;
 	
 	public DataEntryPanel() {
 		super();
@@ -93,6 +96,7 @@ public class DataEntryPanel extends JPanel {
 				van.setSelected(false);
 				motorbike.setSelected(false);
 				truck.setSelected(false);
+				typeSelected = true; 
 				setVehicleType("sedan");
 			}
 		});
@@ -102,6 +106,7 @@ public class DataEntryPanel extends JPanel {
 				sedan.setSelected(false);
 				motorbike.setSelected(false);
 				truck.setSelected(false);
+				typeSelected = true; 
 				setVehicleType("van");
 			}
 		});
@@ -111,6 +116,7 @@ public class DataEntryPanel extends JPanel {
 				van.setSelected(false);
 				motorbike.setSelected(false);
 				sedan.setSelected(false);
+				typeSelected = true; 
 				setVehicleType("truck");
 			}
 		});
@@ -120,6 +126,7 @@ public class DataEntryPanel extends JPanel {
 				van.setSelected(false);
 				sedan.setSelected(false);
 				truck.setSelected(false);
+				typeSelected = true; 
 				setVehicleType("motorbike");
 			}
 		});
@@ -127,6 +134,7 @@ public class DataEntryPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				isNotDiesel.setSelected(false);
+				dieselSelected = true;
 				setIsDiesel(true);
 			}
 		});
@@ -134,16 +142,30 @@ public class DataEntryPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				isDiesel.setSelected(false);
+				dieselSelected = true;
 				setIsDiesel(false);
 			}
 		});
 
 	}
 	
-	public void confirmTextInput() {
-		setKmsDriven(Integer.parseInt(this.kmTextField.getText()));
-		setEngineSize(Integer.parseInt(this.sizeTextField.getText()));
-		setAge(Integer.parseInt(this.ageTextField.getText()));
+	public boolean confirmInput() {
+		if (this.typeSelected && this.dieselSelected) {
+			try {
+				setKmsDriven(Integer.parseInt(this.kmTextField.getText()));
+				setEngineSize(Integer.parseInt(this.sizeTextField.getText()));
+				setAge(Integer.parseInt(this.ageTextField.getText()));
+				return true;
+		        
+		    } catch (NumberFormatException nfe) {
+		    	JOptionPane.showMessageDialog(null, "Please enter valid numbers");
+		    	return false;
+		    }
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Please answer every question");
+			return false;
+		}
 	}
 	
 	//Getter and setter methods for vehicle information

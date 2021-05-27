@@ -12,6 +12,8 @@ public class ResultsPanel extends JPanel {
 	public ResultsPanel(Vehicle vehicle) {
 		super(); 
 		setPreferredSize(new Dimension(600, 600));
+		System.out.println(vehicle.getType());
+		System.out.println(vehicle.getAge() + " years, " + vehicle.getKms() + " kms. " + "is diesel: " + vehicle.isDiesel());
 
 	}
 

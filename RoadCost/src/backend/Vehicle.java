@@ -16,4 +16,24 @@ public class Vehicle {
 				
 	}
 
+	public boolean isDiesel() {
+		return isDiesel;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public int getEngineSize() {
+		return engineSize;
+	}
+
+	public int getKms() {
+		return kms;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
 }
