@@ -5,9 +5,11 @@ import java.awt.Graphics;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
+import backend.Vehicle;
+
 public class ResultsPanel extends JPanel {
 
-	public ResultsPanel() {
+	public ResultsPanel(Vehicle vehicle) {
 		super(); 
 		setPreferredSize(new Dimension(600, 600));
 
