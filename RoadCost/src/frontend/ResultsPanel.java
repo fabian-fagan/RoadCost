@@ -20,7 +20,12 @@ public class ResultsPanel extends JPanel {
 		super(); 
 		setPreferredSize(new Dimension(600, 600));
 		this.calculator = new Calculator(vehicle);
-		System.out.println("total cost: " + this.calculator.calculateTotalCost()); 
+		System.out.println("Fuel cost: $" + this.calculator.calculateFuelCost()); 
+		System.out.println("RUC cost: $" + this.calculator.calculateRUCRateCost()); 
+		System.out.println("Rego cost: $" + this.calculator.calculateRegoCost()); 
+		System.out.println("Total cost: $" + this.calculator.calculateTotalCost()); 
+		System.out.println("You will need a Warrant of Fitness every " + this.calculator.calculateWOFFrequency() + " months."); 
+		
 
 	}
 

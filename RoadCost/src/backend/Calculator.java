@@ -19,13 +19,14 @@ public class Calculator {
 	 * These numbers are just estimates as the make/model of the car are also important
 	 * for fuel consumption.
 	 * 
-	 * @return int estimated fuel cost.
+	 * @return double estimated fuel cost.
 	 */
-	public int calculateFuelCost() {
-		int cost = 0;
-		int kmPerLitre = 0;
-		int oneLitreCost = 2; //assume gas is $2 per litre
-		int engineSize = this.vehicle.getEngineSize();
+	public double calculateFuelCost() {
+		double cost = 0;
+		double kmPerLitre = 0;
+		double oneLitrePetrolCost = 2; //assume petrol is $2 per litre
+		double oneLitreDieselCost = 1.4; //assume diesel is $1.4 per litre
+		double engineSize = this.vehicle.getEngineSize();
 		if (this.vehicle.getType().equals("motorbike")) {
 			kmPerLitre = 45; //average rate for motorbikes	
 		}
@@ -41,12 +42,17 @@ public class Calculator {
 		else {
 			kmPerLitre = 8; //over 3000cc, worst case 
 		}
-		int kmsPerWeek = vehicle.getKms();
-		int kmsPerYear = kmsPerWeek * 52;
-		int litresPerYear = kmsPerYear / kmPerLitre; 
-		cost = oneLitreCost * litresPerYear; 
+		double kmsPerWeek = vehicle.getKms();
+		double kmsPerYear = kmsPerWeek * 52;
+		double litresPerYear = kmsPerYear / kmPerLitre; 
+		if (this.vehicle.isDiesel()) {
+			cost = oneLitreDieselCost * litresPerYear; 
+		}
+		else {
+			cost = oneLitrePetrolCost * litresPerYear; 
+		}
 
-		return cost;
+		return Math.round(cost * 100.0) / 100.0; //2dp
 	}
 
 	/**
@@ -56,17 +62,17 @@ public class Calculator {
 	 * 
 	 * Calculations based on vehicle type and kilometers driven per week
 	 * 
-	 * @return int estimated RUC rate per year.
+	 * @return double estimated RUC rate per year.
 	 */
-	public int calculateRUCRateCost() {
+	public double calculateRUCRateCost() {
 		if (!this.vehicle.isDiesel()) {
 			return 0; // No cost for petrol vehicles
 		}
 		String type = this.vehicle.getType();
-		int cost = 0;
-		int kmsPerWeek = vehicle.getKms();
-		int kmsPerYear = kmsPerWeek * 52;
-		int setsOf1000km = kmsPerYear / 1000;
+		double cost = 0;
+		double kmsPerWeek = vehicle.getKms();
+		double kmsPerYear = kmsPerWeek * 52;
+		double setsOf1000km = kmsPerYear / 1000;
 		if (type.equals("standard") || type.equals("motorbike")) {
 			cost = 72 * setsOf1000km;
 		} 
@@ -77,7 +83,7 @@ public class Calculator {
 			cost = 159 * setsOf1000km;
 		}
 
-		return cost;
+		return Math.round(cost * 100.0) / 100.0; //2dp
 	}
 
 	/**
@@ -87,12 +93,12 @@ public class Calculator {
 	 * For information about values used, visit:
 	 * https://www.nzta.govt.nz/vehicles/licensing-rego/vehicle-fees/licensing-fees/
 	 * 
-	 * @return int estimated rego cost.
+	 * @return double estimated rego cost.
 	 */
-	public int calculateRegoCost() {
+	public double calculateRegoCost() {
 		String type = this.vehicle.getType();
 		boolean isDiesel = this.vehicle.isDiesel();
-		int cost = 0;
+		double cost = 0;
 		if (type.equals("standard")) {
 			if (isDiesel) {
 				cost = 176;
@@ -131,7 +137,22 @@ public class Calculator {
 			}
 		}
 
-		return cost;
+		return Math.round(cost * 100.0) / 100.0; //2dp
+	}
+	
+	/**
+	 * Calculates whether the vehicle needs a WOF every 6 months or 12 months based on age
+	 * 
+	 * @return int number of months each WOF lasts
+	 */
+	public int calculateWOFFrequency() {
+		int yearMade = vehicle.getAge(); 
+		if (yearMade < 2001) {
+			return 6; 
+		}
+		else {
+			return 12; 
+		}
 	}
 
 	/**
@@ -139,10 +160,10 @@ public class Calculator {
 	 * 
 	 * @return int estimated total yearly cost.
 	 */
-	public int calculateTotalCost() {
-		int totalCost = 0;
+	public double calculateTotalCost() {
+		double totalCost = 0;
 		totalCost = calculateFuelCost() + calculateRUCRateCost() + calculateRegoCost();
-		return totalCost;
+		return Math.round(totalCost * 100.0) / 100.0; //2dp
 	}
 
 }
