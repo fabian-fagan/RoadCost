@@ -11,6 +11,12 @@ import javax.swing.JMenuItem;
 
 import backend.Vehicle;
 
+/**
+* The GUI class controls the front-end and is the entry point of the program.
+*
+* @author  Fabian Fagan
+*/
+
 public class GUI extends JFrame {
 
 	private ResultsPanel resultsPanel;
@@ -45,11 +51,6 @@ public class GUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				remove(dataPanel);
-				dataPanel = new DataEntryPanel();
-				JButton confirm = new JButton("Confirm");
-				confirm.setPreferredSize(new Dimension(320, 50));
-				dataPanel.add(confirm);
-				add(dataPanel);
 				createDataEntryPanel();
 				pack();
 				setVisible(true);

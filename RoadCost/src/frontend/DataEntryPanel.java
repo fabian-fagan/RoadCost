@@ -9,6 +9,13 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+/**
+* The DataEntryPanel presents the user with fields to fill out about vehicle attributes.
+* The GUI then uses these values to construct a ResultsPanel.
+*
+* @author  Fabian Fagan
+*/
+
 public class DataEntryPanel extends JPanel {
 	private String vehicleType;
 	private boolean isDiesel; 
@@ -48,7 +55,7 @@ public class DataEntryPanel extends JPanel {
 		// Question 2
 		JPanel age = new JPanel();
 		JLabel q2 = new JLabel();
-		q2.setText("<html><h3>Age of vehicle (years)</h3></html>");
+		q2.setText("<html><h3>What year was the vehicle made?</h3></html>");
 		age.add(q2);
 		this.ageTextField = new JTextField(5);
 		this.ageTextField.setFont(this.ageTextField.getFont().deriveFont(25f));
@@ -97,7 +104,7 @@ public class DataEntryPanel extends JPanel {
 				motorbike.setSelected(false);
 				truck.setSelected(false);
 				typeSelected = true; 
-				setVehicleType("sedan");
+				setVehicleType("standard");
 			}
 		});
 		van.addActionListener(new ActionListener() {
