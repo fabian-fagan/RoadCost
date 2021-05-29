@@ -81,6 +81,10 @@ public class GUI extends JFrame {
 					
 					//Create results panel based on vehicle
 					resultsPanel = new ResultsPanel(vehicle);
+					remove(dataPanel);
+					setVisible(false);
+					add(resultsPanel);
+					setVisible(true);
 				}				
 			}
 		});
