@@ -13,7 +13,10 @@ public class Vehicle {
 	private boolean isDiesel;
 	private int kms;
 	private int engineSize;
-
+	
+	/**
+	 * Construct a Vehicle based on attributes given from the DataEntryPanel
+	 */
 	public Vehicle(String type, int age, boolean isDiesel, int kms, int engineSize) {
 		this.type = type;
 		this.age = age;
@@ -23,6 +26,9 @@ public class Vehicle {
 
 	}
 
+	/**
+	 * Getter methods for vehicle attributes
+	 */
 	public boolean isDiesel() {
 		return isDiesel;
 	}

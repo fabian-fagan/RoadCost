@@ -1,11 +1,8 @@
 package frontend;
 
 import java.awt.Dimension;
-import java.awt.Graphics;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import backend.Calculator;
 import backend.Vehicle;
 
@@ -18,7 +15,10 @@ import backend.Vehicle;
 
 public class ResultsPanel extends JPanel {
 	private Calculator calculator;
-
+     
+	/**
+	 * Construct a ResultsPanel based on results from Vehicle.
+	 */
 	public ResultsPanel(Vehicle vehicle) {
 		super();
 		setPreferredSize(new Dimension(600, 600));
@@ -28,7 +28,11 @@ public class ResultsPanel extends JPanel {
 		add(titleImage);
 		createResults();
 	}
-
+	
+	/**
+	 * Creates results as individual panels and adds labels to them. 
+	 * Individual panels are then added to the parent ResultsPanel.
+	 */
 	private void createResults() {
 		// Fuel
 		JPanel fuel = new JPanel();

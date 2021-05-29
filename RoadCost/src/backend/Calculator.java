@@ -4,7 +4,7 @@ package backend;
  * The Calculator class performs calculations based on vehicle attributes.
  *
  * @author Fabian Fagan
- */
+ */ 
 
 public class Calculator {
 	private Vehicle vehicle;

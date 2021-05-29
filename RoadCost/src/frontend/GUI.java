@@ -3,12 +3,10 @@ package frontend;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-
 import backend.Vehicle;
 
 /**
@@ -18,12 +16,13 @@ import backend.Vehicle;
 */
 
 public class GUI extends JFrame {
-
 	private ResultsPanel resultsPanel;
 	private DataEntryPanel dataPanel;
 
+	/**
+	 * Construct a GUI with inital data entry panel.
+	 */
 	public GUI() {	
-		//Create GUI with inital data entry panel
 		super("Road Cost");		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
@@ -33,17 +32,18 @@ public class GUI extends JFrame {
 		setVisible(true);
 	}
 
+	/**
+	 * Creates the DataEntryPanel and menu items (confirm/reset). 
+	 */
 	private void createDataEntryPanel() {
 		this.dataPanel = new DataEntryPanel();
 		JMenuBar menu = new JMenuBar();
 		final JMenuItem reset = new JMenuItem("Reset");
-		JMenuItem quit = new JMenuItem("Quit");
 		JButton confirm = new JButton("Confirm");
 		confirm.setPreferredSize(new Dimension(320, 50));
 		this.dataPanel.add(confirm);
 		add(this.dataPanel);
 		menu.add(reset);
-		menu.add(quit);
 		setJMenuBar(menu);
 		
 		// Add listeners to menu items.
@@ -54,13 +54,6 @@ public class GUI extends JFrame {
 				createDataEntryPanel();
 				pack();
 				setVisible(true);
-			}
-		});
-
-		quit.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
 			}
 		});
 		
@@ -88,7 +81,6 @@ public class GUI extends JFrame {
 				}				
 			}
 		});
-
 	}
 
 	public static void main(String[] args) {

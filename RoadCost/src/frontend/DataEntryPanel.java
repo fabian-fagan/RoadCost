@@ -28,6 +28,9 @@ public class DataEntryPanel extends JPanel {
 	private boolean typeSelected;
 	private boolean dieselSelected;
 	
+	/**
+	 * Construct a DataEntryPanel with fields for user input
+	 */
 	public DataEntryPanel() {
 		super();
 		setPreferredSize(new Dimension(600, 600));
@@ -36,7 +39,11 @@ public class DataEntryPanel extends JPanel {
 		add(titleImage);
 		createFields();
 	}
-
+     
+	/**
+	 * Creates fields for user input which are stored as individual panels
+	 * and then added to the parent DataEntryPanel.
+	 */
 	public void createFields() {
 		// Question 1
 		JPanel type = new JPanel();
@@ -155,7 +162,13 @@ public class DataEntryPanel extends JPanel {
 		});
 
 	}
-	
+	 
+	/**
+	 * Confirms/saves the current values given in the field
+	 * 
+	 * @return true/false based on whether the inputs are valid
+	 * and completed
+	 */
 	public boolean confirmInput() {
 		if (this.typeSelected && this.dieselSelected) {
 			try {
@@ -175,7 +188,9 @@ public class DataEntryPanel extends JPanel {
 		}
 	}
 	
-	//Getter and setter methods for vehicle information
+	/**
+	 * Getter and setter methods for vehicle information
+	 */
 	
 	public String getVehicleType() {
 		return this.vehicleType;
