@@ -23,10 +23,13 @@ public class ResultsPanel extends JPanel {
 		super();
 		setPreferredSize(new Dimension(600, 600));
 		this.calculator = new Calculator(vehicle);
-		ImageComponent titleImage = new ImageComponent("assets/brrr.png");
+		ImageComponent titleImage = new ImageComponent("assets/results_image.png");
+		ImageComponent infoImage = new ImageComponent("assets/info_image.png");
 		titleImage.setPreferredSize(new Dimension(500, 150));
+		infoImage.setPreferredSize(new Dimension(500, 250));
 		add(titleImage);
 		createResults();
+		add(infoImage);
 	}
 	
 	/**

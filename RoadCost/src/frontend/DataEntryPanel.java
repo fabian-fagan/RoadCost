@@ -34,7 +34,7 @@ public class DataEntryPanel extends JPanel {
 	public DataEntryPanel() {
 		super();
 		setPreferredSize(new Dimension(600, 600));
-		ImageComponent titleImage = new ImageComponent("assets/brrr.png");
+		ImageComponent titleImage = new ImageComponent("assets/data_image.png");
 		titleImage.setPreferredSize(new Dimension(500, 250));
 		add(titleImage);
 		createFields();
